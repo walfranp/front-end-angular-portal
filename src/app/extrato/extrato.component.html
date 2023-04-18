@@ -1,0 +1,97 @@
+<div class="content-wrapper" style="min-height: 1276px;">
+  <div class="container">
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-7">
+
+        <div class="card ">
+          <div class="card-header bg-secondary">
+            <b>Extrato de descontos</b>
+          </div>
+          <div class="card-body">
+
+            <div *ngIf="msg_sem_dados" class="alert alert-warning" role="alert">
+              Não houve descontos para o périodo informado!
+            </div>
+
+            <form #frm="ngForm">
+
+              <div class="row" style="border: 1px solid; border-color: #eeeeee;">
+
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="mes">Selecione o mês</label>
+                    <select class="form-control" id="mes" name="mes" [(ngModel)]="mes_selecionado" required>
+                      <option *ngFor="let m of meses" value="{{ m.mes_id }}">{{ m.mes }}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="mes">ano</label>
+                    <select class="form-control" id="ano" name="ano" [(ngModel)]="ano_selecionado" required>
+                      <option *ngFor="let a of anos" value="{{ a.ano_id }}">{{ a.ano }}</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-3">
+                  <button [disabled]="!frm.valid" style="margin-top: 30px;" id="btn_buscar"
+                    class="btn btn-primary btn-block" (click)="buscaValores()">
+                    <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status"
+                      aria-hidden="true"></span>
+                    Buscar
+                  </button>
+                </div>
+
+                <div class="col-md-4">
+                  <button [disabled]="!lista_gastos" style="margin-top: 30px;" id="btn_imprimir"
+                    class="btn btn-info btn-block" (click)="imprimirExtrato()">Imprimir extrato</button>
+                </div>
+
+              </div>
+
+            </form>
+
+          </div>
+
+          <!-- TABELA -->
+          <div class="row" *ngIf="lista_gastos">
+            <div class="col-md-12">
+              <table class="table table-sm" style="margin-left: 2%; width: 95%;">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Convênio</th>
+                    <th scope="col" style="text-align: right;">Valor R$</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let g of lista_gastos.gastos">
+                    <td style="width: 60%;">{{ g.convenio }}</td>
+                    <td style="text-align: right;">{{ g.valor }}</td>
+                  </tr>
+                </tbody>
+
+                <tfoot>
+                  <tr style="background-color: #eeeeee;">
+                    <th class="thead-light"></th>
+                    <td class="thead-light" style="text-align: right;"><b>Total R$:</b> {{ lista_gastos.total }}</td>
+                  </tr>
+                </tfoot>
+
+              </table>
+            </div>
+          </div>
+          <!--FIM TABELA -->
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

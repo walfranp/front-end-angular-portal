@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <app-cabecalho *ngIf="userLogado" ></app-cabecalho>
+  <app-barra-lateral *ngIf="userLogado"></app-barra-lateral>
+  <!-- <div class="content-wrapper" style="min-height: 1276px;"> -->
+    <router-outlet></router-outlet>
+  <!-- </div> -->
+  <app-rodape *ngIf="userLogado"></app-rodape>
+</div>

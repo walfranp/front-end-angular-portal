@@ -1,0 +1,25 @@
+<div class="content-wrapper" style="min-height: 1276px;">
+  <div class="container">
+    <br>
+
+    <div class="row">
+      <div class="col-md-9">
+
+        <div class="card">
+          <div class="card-header bg-secondary">
+            <b>Total de descontos</b>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{saudacao}} {{nome_associado}}</h5>
+            <p *ngIf="valor == '0,00'" class="card-text">Não foram encontrados descontos recentes.</p>
+            <p *ngIf="valor != '0,00'" class="card-text">Seus últimos descontos encontrados foram do mês de <b>{{mes_ref_valor}}</b> de <b>{{ano_ref_valor}}</b> e são de <b>R$: {{valor}}</b></p>
+            <p *ngIf="valor != '0,00'" class="card-text">Para um melhor detalhamento, clique no item: Extrato de descontos no menu ao lado.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

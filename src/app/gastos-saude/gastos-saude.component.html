@@ -1,0 +1,61 @@
+<div class="content-wrapper" style="min-height: 1276px;">
+  <div class="container">
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-4">
+
+        <div class="card ">
+          <div class="card-header bg-secondary">
+            <b>Demonstrativo de gastos com saúde</b>
+          </div>
+          <div class="card-body">
+
+            <div *ngIf="msg_sem_dados" class="alert alert-warning" role="alert">
+              Sem dados para o ano informado!
+            </div>
+
+            <form #frm="ngForm">
+
+              <div class="row" style="border: 1px solid; border-color: #eeeeee;">
+
+
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label for="mes">Ano referência</label>
+                    <select class="form-control" id="ano" name="ano" [(ngModel)]="ano_selecionado" required>
+                      <option *ngFor="let a of anos" value="{{ a.ano_id }}">{{ a.ano }}</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-5">
+                  <button [disabled]="!frm.valid" style="margin-top: 30px;" id="btn_buscar"
+                    class="btn btn-primary btn-block" (click)="buscaGastosSaude()">
+                    <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status"
+                      aria-hidden="true"></span>
+                    Buscar
+                  </button>
+                </div>
+
+                <!-- <div class="col-md-4">
+                  <button [disabled]="!lista_gastos" style="margin-top: 30px;" id="btn_imprimir"
+                    class="btn btn-info btn-block" (click)="imprimirDemonstrativo()">Imprimir extrato</button>
+                </div> -->
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

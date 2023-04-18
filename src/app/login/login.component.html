@@ -1,0 +1,135 @@
+<div style="margin: 0 auto; height: 1024px; background-image: url('./assets/logo_background.png');">
+
+  <div style="width: 70%; float:right;  height: 300px; border: 0px solid; margin-left: 30%; margin-top: 10%;">
+
+    <div class="row" style="background-color: #343A40; border: 5px solid; border-color: #28A745; opacity: 0.8;">
+
+
+      <div class="col-md-6 col-md-offset-2" style="color: white;">
+        <br>
+        <h2 style="margin-left: 21%;">Portal do Filiado</h2>
+        <img src="assets/logo-login.png" width="256px" height="240px" style="margin-top: 1%; margin-left: 20%;">
+      </div>
+
+      <div class="col-md-3">
+
+        <div class="card" style="margin-top: 10px;">
+          <div class="card-header bg-success">
+            <b>Login</b>
+          </div>
+          <div class="card-body">
+            <form #form="ngForm">
+
+              <div *ngIf="msg_erro_login" class="alert alert-danger" role="alert">
+                Usuário ou senha incorretos!
+              </div>
+
+              <div *ngIf="msg_erro_server" class="alert alert-warning" role="alert">
+                Sem comunicação com o servidor!
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="nav-icon fas fa-user"></i>
+                  </div>
+                </div>
+                <input type="text" class="form-control" placeholder="Seu usuário (CPF)" id="user" name="user"
+                  [(ngModel)]="usuario_informado" required>
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="nav-icon fas fa-key"></i>
+                  </div>
+                </div>
+                <input [type]="passwordType" class="form-control" placeholder="Sua senha" id="senha" name="senha"
+                  data-toggle="password" [(ngModel)]="senha_informada" required>
+
+                <div style="cursor: pointer;" *ngIf="passwordVisivel == true" class="input-group-append" (click)="visualizaOcultaSenha()">
+                  <div class="input-group-text">
+                    <i class="fa fa-eye"></i>
+                  </div>
+                </div>
+                <div style="cursor: pointer;" *ngIf="passwordVisivel == false" class="input-group-append" (click)="visualizaOcultaSenha()">
+                  <div class="input-group-text">
+                    <i class="fa fa-eye-slash"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  <a href="#" data-toggle="modal" data-target="#reenviarLinkModal">Esqueci minha senha</a>
+                </label>
+              </div>
+              <button [disabled]="!form.valid" type="submit" (click)="fazerLogin()" class="btn btn-primary btn-block">
+                <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Entrar
+              </button>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="modal fade" data-backdrop="static" id="reenviarLinkModal" tabindex="-1" aria-labelledby="reenviarLinkModal"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reenviarLinkModal">Recuperação de senha</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+
+        <form #frm="ngForm">
+
+
+          <div *ngIf="email_nao_confere" class="alert alert-warning" role="alert">
+            O e-mail informado não confere com o cadastrado!
+          </div>
+
+          <div *ngIf="link_enviado" class="alert alert-success" role="alert">
+            E-mail de alteração de senha enviado!
+          </div>
+
+          <div *ngIf="msg_erro_server_envio_link" class="alert alert-warning" role="alert">
+            Sem comunicação com o servidor!
+          </div>
+
+          <div *ngIf="!ocultarDizeres" class="form-group">
+            <label for="email_cad">E-mail cadstrado</label>
+            <input type="email" class="form-control" id="email_cad" name="email_cad" [(ngModel)]="email_cad" required>
+            <small id="email_cadHelp" class="form-text text-muted">Informe seu e-mail cadastrado para
+              receber o link de alteração de senha.</small>
+          </div>
+          <div *ngIf="!ocultarDizeres" class="col-md-4">
+            <button [disabled]="!frm.valid" style="margin-top: 30px;" id="btn_alt_senha" class="btn btn-info btn-block"
+              type="submit" (click)="enviarLinkAlteracaoSenha()">
+              <span *ngIf="spinnerLink" class="spinner-border spinner-border-sm" role="status"
+                aria-hidden="true"></span>
+              Enviar</button>
+          </div>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+          (click)="irParaAlteracaoSenha()">Fechar</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
