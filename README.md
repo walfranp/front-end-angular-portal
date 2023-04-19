@@ -8,6 +8,14 @@
 <p align="center">
   <img src="src/assets/tela-login.png"/>
 </p>
+<br>
+<p align="center">
+  <img src="src/assets/tela-extrato.png"/>
+</p>
+<br>
+<p align="center">
+  <img src="src/assets/tela-graficos.png"/>
+</p>
 
 ## O que é este projeto?
 O projeto tem como objetivo disponibilizar extrato de gastos detalhado por associado e possibilitando a impressão. Grafico de gastos, gráfico de convênios mais utilizados, relatório de gasto com saúde e links úteis.
